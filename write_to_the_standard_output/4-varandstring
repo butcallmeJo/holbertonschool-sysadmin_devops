@@ -1,0 +1,4 @@
+#!/bin/bash
+home_directory_variable=$HOME
+username_variable=$USER
+echo "Hello, home directory is" $home_directory_variable "and my username is" $username_variable"!"
