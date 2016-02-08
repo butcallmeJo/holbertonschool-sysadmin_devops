@@ -1,0 +1,25 @@
+/*****************************************************************************/
+		Made by Josquin Gaillard for Holberton School
+/*****************************************************************************/
+
+/*===========================================================================*/
+	1. What should you create? Using what?
+
+    You need to create a pair of SSH keys. You can create them by typing:
+      	      [ssh-keygen -t rsa -b 4096 -C "Comment here"]
+  [ssh-keygen] is the bash command to start the process of creating a pair of
+  keys. [-t rsa] is the option to choose what type of key you want to create
+  [-b 4096] is the option to choose how many bits the key will be. [-C "Comm
+  ent here"] is the option to comment on the key so that you can remember
+  what it is used for.
+    After, you will be asked to choose a file location and file name. Then,
+  you will be asked to enter a password/passphrase for the private key.
+  You are then done creating your public and private keys and can access them
+  in the .ssh folder most of the time.
+
+/*===========================================================================*/
+	2. What should you do with the public key?
+	   How will it be used? What will it do?
+
+  The public key needs to be set up in the sandbox in the authorized ssh keys
+  so that you can connect to the server using your private key. 
