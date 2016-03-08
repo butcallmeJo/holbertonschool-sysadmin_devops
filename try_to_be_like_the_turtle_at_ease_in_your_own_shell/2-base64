@@ -1,2 +1,2 @@
 #!/bin/bash
-base64 --decode
+base64 -d
