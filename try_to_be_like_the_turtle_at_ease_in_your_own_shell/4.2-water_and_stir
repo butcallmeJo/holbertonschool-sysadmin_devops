@@ -1,0 +1,2 @@
+#!/bin/bash
+WATERNUM="$(echo -e ${WATER} | tr water 01234)" && STIRNUM="$(echo -e ${STIR} | tr stir. 01234)" && SUMWATERSTIR=$((5#$WATERNUM+5#$STIRNUM)) && BASEEIGHT="$(printf "0%o\n " $SUMWATERSTIR )" && BEHLNORT="$(echo -e ${BASEEIGHT:1} | tr 01234567 behlnort)" && echo $BEHLNORT
