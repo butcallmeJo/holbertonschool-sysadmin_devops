@@ -1,0 +1,9 @@
+#!/bin/bash
+t=tput
+p(){
+$t setb $1
+printf "%$((`$t cols`/3))s"
+}
+for i in $(seq 2 `$t lines`);do
+p 2;p 7;p 4;$t sgr0;echo
+done
