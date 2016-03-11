@@ -1,2 +1,2 @@
 #!/usr/bin/ruby
-puts ARGV[0]
+puts File.file?(ARGV[0])
