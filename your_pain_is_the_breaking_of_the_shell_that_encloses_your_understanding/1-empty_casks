@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -laR | awk {print "$5"} | grep '0'
+find -empty -exec basename {} \;
