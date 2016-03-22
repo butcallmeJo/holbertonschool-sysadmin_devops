@@ -1,2 +1,3 @@
 #!/bin/bash
-cut -d'0' -s -f1  | wc -l
+# cut -d'0' -s -f1  | wc -l
+grep -c '0'
