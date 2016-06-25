@@ -1,1 +1,7 @@
 from fabric.api import *
+
+env.hosts = ['158.69.84.192']
+env.user = "admin"
+
+def deploy():
+	put ("/ventlog/*", "/usr/share/nginx/html/")
