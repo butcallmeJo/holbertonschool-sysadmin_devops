@@ -1,0 +1,6 @@
+---
+hostname: 127.0.0.1
+port: '2222'
+username: vagrant
+ssh_key: "/home/jodag/Dev/holberton/holbertonschool-sysadmin_devops/chef_is_fun/.kitchen/kitchen-vagrant/kitchen-chef_is_fun-default-debian-84/.vagrant/machines/default/virtualbox/private_key"
+last_action: create

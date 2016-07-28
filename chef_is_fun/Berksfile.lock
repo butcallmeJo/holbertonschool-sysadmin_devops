@@ -1,0 +1,22 @@
+DEPENDENCIES
+  holberton-wrapper
+    path: cookbooks/holberton-wrapper
+
+GRAPH
+  apt (4.0.1)
+    compat_resource (>= 12.10)
+  chef_handler (1.4.0)
+  compat_resource (12.10.7)
+  holberton-wrapper (0.1.0)
+    apt (~> 4.0.1)
+    ntp (~> 2.0.0)
+    openssh (~> 2.0.0)
+    user (~> 0.4.2)
+  iptables (2.2.0)
+  ntp (2.0.0)
+    windows (>= 1.38.0)
+  openssh (2.0.0)
+    iptables (>= 1.0)
+  user (0.4.2)
+  windows (1.44.1)
+    chef_handler (>= 0.0.0)
