@@ -27,4 +27,9 @@ opts_parser = OptionParser.new do |opts|
 	opts.on("-v", "--verbose", "Provides extra information while the script is running") do |verb|
 		options[:verbose] = verb
 	end
+	opts.on("-h", "--help", "returns the help menu") do
+		puts opts
+		exit
+	end
 end
+opts_parser.parse!
