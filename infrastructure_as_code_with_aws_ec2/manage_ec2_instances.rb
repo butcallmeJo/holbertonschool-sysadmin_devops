@@ -59,29 +59,35 @@ if options[:action] == :launch then
 	instance_id = r.instances[0].instance_id
 	r = instance.wait_until(:instance_running, instance_ids:[instance_id])
 	puts instance_id, r.reservations[0].instances[0].public_dns_name
-else
-	# Stop an existing instance
-	if options[:action] == :stop then
-		r = instance.stop_instances({
-			dry_run: false,
-			instance_ids: [options[:server_id]],
-			force: false,
-		})
-
-	# Start an existing instance
-	elsif options[:action] == :start then
-		r = instance.start_instances({
-			instance_ids: [options[:server_id]],
-			dry_run: false,
-		})
-		r = instance.wait_until(:instance_running, instance_ids:[options[:server_id]])
-		puts r.reservations[0].instances[0].public_dns_name
-
-	# Terminate an existing instance
-	elsif options[:action] == :terminate then
-		r = instance.terminate_instances({
-			dry_run: false,
-			instance_ids: [options[:server_id]],
-		})
+# Stop an existing instance
+elsif options[:action] == :stop then
+	if not options[:server_id] then
+		puts "Error: please put a server id"
+		exit
 	end
+	r = instance.stop_instances({
+		instance_ids: [options[:server_id]],
+	})
+
+# Start an existing instance
+elsif options[:action] == :start then
+	if not options[:server_id] then
+		puts "Error: please put a server id"
+		exit
+	end
+	r = instance.start_instances({
+		instance_ids: [options[:server_id]],
+	})
+	r = instance.wait_until(:instance_running, instance_ids:[options[:server_id]])
+	puts r.reservations[0].instances[0].public_dns_name
+
+# Terminate an existing instance
+elsif options[:action] == :terminate then
+	if not options[:server_id] then
+		puts "Error: please put a server id"
+		exit
+	end
+	r = instance.terminate_instances({
+		instance_ids: [options[:server_id]],
+	})
 end
