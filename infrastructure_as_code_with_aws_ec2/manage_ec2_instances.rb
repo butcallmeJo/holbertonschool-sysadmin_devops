@@ -13,9 +13,9 @@ opts_parser = OptionParser.new do |opts|
 	#
 	opts.on("-a", "--action ACTION", [:launch, :stop, :start, :terminate], "Takes an action: launch, stop, start, terminate with a server_id") do |action|
 		if not action then
-			puts "Error: Not enought arguments"
+			puts "Error: Not enough arguments"
 		else
-			options[:actions] = action
+			options[:action] = action
 		end
 	end
 	#
@@ -38,7 +38,7 @@ config = YAML.load_file('config.yaml')
 
 # setting up the ec2 instance from the config file
 instance = Aws::EC2::Client.new(
-		region: config['us-west-2'],
+		region: 'us-west-2',
 		access_key_id: config['access_key_id'],
 		secret_access_key: config['secret_access_key']
 	)
@@ -57,8 +57,31 @@ if options[:action] == :launch then
 		}
 	})
 	instance_id = r.instances[0].instance_id
-	r = ec2.wait_until(:instance_running, instance_ids:[instance_id])
+	r = instance.wait_until(:instance_running, instance_ids:[instance_id])
 	puts instance_id, r.reservations[0].instances[0].public_dns_name
 else
-	puts "something else"
+	# Stop an existing instance
+	if options[:action] == :stop then
+		r = instance.stop_instances({
+			dry_run: false,
+			instance_ids: [options[:server_id]],
+			force: false,
+		})
+
+	# Start an existing instance
+	elsif options[:action] == :start then
+		r = instance.start_instances({
+			instance_ids: [options[:server_id]],
+			dry_run: false,
+		})
+		r = instance.wait_until(:instance_running, instance_ids:[options[:server_id]])
+		puts r.reservations[0].instances[0].public_dns_name
+
+	# Terminate an existing instance
+	elsif options[:action] == :terminate then
+		r = instance.terminate_instances({
+			dry_run: false,
+			instance_ids: [options[:server_id]],
+		})
+	end
 end
