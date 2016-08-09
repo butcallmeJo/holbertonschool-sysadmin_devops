@@ -33,7 +33,7 @@ opts_parser = OptionParser.new do |opts|
         options[:status] = status
     end
     #
-    opts.on('-n', '--name', 'Change the name of the instance') do |name|
+    opts.on('-n', '--name=NAME', 'Change the name of the instance') do |name|
         options[:name] = name
     end
     #
@@ -107,12 +107,14 @@ elsif options[:status] || options[:action] == :status
         puts 'Error: please put a server id'
         exit
     end
-    r = instance.describe_instance_status(instance_ids: [options[:instance_id]])
-    puts r
+    r = instance.describe_instances(instance_ids: [options[:instance_id]])
+    puts r.reservations[0].instances[0].state.name
 elsif options[:name] && options[:action] == :change_name
-	unless options[:instance_id]
+    unless options[:instance_id]
         puts 'Error: please put a server id'
         exit
-    end
-	instance.create_tags(:resources => [options[:instance_id]], :tags => [:key => "Name", :value => options[:name]])
+      end
+    instance.create_tags(resources: [(options[:instance_id]).to_s], tags: [
+                             { key: 'Name', value: (options[:name]).to_s }
+                         ])
 end
