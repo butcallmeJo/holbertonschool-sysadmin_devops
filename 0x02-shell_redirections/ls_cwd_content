@@ -1,0 +1,17 @@
+total 60
+drwxr-xr-x  2 jodag jodag 4096 Oct  7 13:12 .
+drwxr-xr-x 25 jodag jodag 4096 Oct  7 12:40 ..
+-rwxr-xr-x  1 jodag jodag   32 Oct  7 12:41 0-hello_world
+-rwxr-xr-x  1 jodag jodag   28 Oct  7 12:46 1-confused_smiley
+-rwxr-xr-x  1 jodag jodag   28 Oct  7 12:47 2-hellofile
+-rwxr-xr-x  1 jodag jodag   39 Oct  7 12:49 3-twofiles
+-rwxr-xr-x  1 jodag jodag   29 Oct  7 12:51 4-lastlines
+-rwxr-xr-x  1 jodag jodag   29 Oct  7 12:51 5-firstlines
+-rwxr-xr-x  1 jodag jodag   39 Oct  7 13:02 6-third_line
+-rwxr-xr-x  1 jodag jodag  110 Oct  7 13:08 7-file
+-rwxr-xr-x  1 jodag jodag  112 Oct  7 13:08 7-file~
+-rwxr-xr-x  1 jodag jodag   36 Oct  7 13:11 8-cwd_state
+-rw-r--r--  1 jodag jodag   12 Oct  7 13:10 8-cwd_state~
+-rw-r--r--  1 jodag jodag   17 Oct  7 13:09 \*\\'"Holberton School"\'\\*$\?\*\*\*\*\*:)
+-rw-r--r--  1 jodag jodag  916 Oct  7 12:53 iacta
+-rw-r--r--  1 jodag jodag    0 Oct  7 13:12 ls_cwd_content

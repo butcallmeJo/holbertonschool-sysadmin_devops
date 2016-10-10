@@ -13,7 +13,7 @@ opts_parser = OptionParser.new do |opts|
     opts.separator 'Specific options:'
     opts.banner = 'Usage: aws_script.rb [options]'
     # action option with launch, stop, start and terminate of instances
-    opts.on('-a', '--action=ACTION', [:launch, :stop, :start, :terminate], 'Select action to perform [launch, start, stop, terminate]') do |action|
+    opts.on('-a', '--action=ACTION', [:list, :upload, :delete, :download], 'Select action to perform [list, upload, delete, download]') do |action|
         if !action
             puts 'Error: Not enough arguments'
         else
@@ -21,9 +21,13 @@ opts_parser = OptionParser.new do |opts|
         end
     end
     #
-    opts.on('-i', '--instance_id=INSTANCE_ID', 'ID of the instance to perform an action on') do |id|
-        options[:instance_id] = id
+    opts.on('-f', '--filepath=FILEPATH', 'Path to the file to upload') do |filepath|
+        options[:filepath] = filepath
     end
+	#
+	opts.on('-b', '--bucketname=BUCKET_NAME', 'Name of the bucket to perform the action on') do |bucketname|
+		options[:bucketname] = bucketname
+	end
     #
     opts.on('-v', '--verbose', 'Run verbosely') do |verb|
         options[:verbose] = verb
@@ -40,3 +44,24 @@ opts_parser = OptionParser.new do |opts|
     end
 end
 opts_parser.parse!
+
+# get the configuration from the yaml file.
+config = YAML.load_file('config.yaml')
+
+# setting up the s3 instance from the config file
+s3 = Aws::S3::Client.new(
+	region: 'us-west-2',
+	access_key_id: config['access_key_id'],
+	secret_access_key: config['secret_access_key']
+)
+
+# launching a new s3 bucket
+if options[:action] == :list
+	puts 'listing contents of bucket' if options[:verbose]
+	unless options[:bucketname]
+		puts 'Error: please put a bucket name ie: --action=list -b<NAME>'
+		exit
+	end
+	r = s3.
+	puts ''
+end
