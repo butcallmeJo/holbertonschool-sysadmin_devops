@@ -1,2 +1,2 @@
 #!/bin/bash
-cut -c-1
+cut -c-1 | while read line; do printf $line; done; printf "\n"
