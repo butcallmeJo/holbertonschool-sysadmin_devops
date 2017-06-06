@@ -1,0 +1,2 @@
+#!/bin/bash
+ps | grep bash | cut -d' ' -f1
