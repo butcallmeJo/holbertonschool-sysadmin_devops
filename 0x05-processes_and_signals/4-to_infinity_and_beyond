@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-# comment to list processes in certain fashion
+# to infinity and beyond
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
